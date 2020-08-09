@@ -1,0 +1,40 @@
+{
+  "name": "bookanna",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt-ts",
+    "build": "nuxt-ts build",
+    "start": "nuxt-ts start",
+    "generate": "nuxt-ts generate",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "cross-env TEST=unit ava ./test/specs/**/*",
+    "test:e2e": "cross-env TEST=e2e ava ./test/e2e/**/*"
+  },
+  "dependencies": {
+    "@nuxtjs/vuetify": "^1.11.2",
+    "@nuxt/typescript-runtime": "^1.0.0",
+    "@nuxtjs/axios": "^5.12.1",
+    "@nuxtjs/auth": "^4.9.1",
+    "nuxt": "^2.14.0",
+    "vue": "latest",
+    "vuetify": "latest"
+  },
+  "devDependencies": {
+    "@nuxtjs/axios": "^5.12.1",
+    "@nuxtjs/auth": "^4.9.1",
+    "@ava/babel": "^1.0.1",
+    "@nuxt/types": "^2.14.0",
+    "@nuxt/typescript-build": "^2.0.2",
+    "@nuxtjs/vuetify": "^1.11.2",
+    "@vue/test-utils": "^1.0.3",
+    "ava": "^3.11.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "cross-env": "^7.0.2",
+    "jsdom": "^16.3.0",
+    "jsdom-global": "^3.0.2",
+    "require-extension-hooks": "^0.3.3",
+    "require-extension-hooks-babel": "^1.0.0",
+    "require-extension-hooks-vue": "^3.0.0"
+  }
+}
