@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+
+  web:
+    build:
+      context: .
+    container_name: bookanna.site
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
+
