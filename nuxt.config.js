@@ -66,7 +66,8 @@ export default {
     middleware: ['auth']
   },
   axios: {
-    baseURL: 'localhost:8080/', //'https://api-t2x4x3tnwq-uc.a.run.app/api/v1/', //'http://127.0.0.1:8000/api/v1/'
+    baseURL: 'http://localhost:8080/',
+    https: false,
   },
   auth: {
     strategies: {
@@ -75,6 +76,7 @@ export default {
           login: {url: 'auth/token/login/', method: 'post', propertyName: 'auth_token'},
           logout: { url: 'auth/token/logout/', method: 'post' },
           user: { url: 'auth/users/me/', propertyName: false },
+          register: {url: 'auth/users/', method: 'post'}
         },
         tokenType: 'Token',
         tokenName: 'Authorization'
@@ -83,7 +85,7 @@ export default {
     redirect: {
       login: '/login',
       logout: '/login',
-      home: '/',
+      home: '/home',
     }
     },
   /*

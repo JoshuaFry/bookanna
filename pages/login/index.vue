@@ -1,79 +1,79 @@
 <template>
 
 
-    <v-form
-      ref="form"
-      v-model="valid"
-      :lazy-validation="lazy"
+  <v-form
+    ref="form"
+    v-model="valid"
+    :lazy-validation="lazy"
+  >
+    <v-text-field
+      v-model="form.username"
+      :counter="15"
+      label="Username"
+      required
+    ></v-text-field>
+
+    <v-text-field
+      v-model="form.password"
+      label="Password"
+      required
+    ></v-text-field>
+
+    <v-btn
+      :disabled="!valid"
+      color="success"
+      class="mr-4"
+      @click="userLogin"
     >
-      <v-text-field
-        v-model="name"
-        :counter="10"
-        :rules="nameRules"
-        label="Name"
-        required
-      ></v-text-field>
+      sign in
+    </v-btn>
 
-      <v-text-field
-        v-model="email"
-        :rules="emailRules"
-        label="E-mail"
-        required
-      ></v-text-field>
-
-      <v-checkbox
-        v-model="checkbox"
-        :rules="[v => !!v || 'You must agree to continue!']"
-        label="Do you agree?"
-        required
-      ></v-checkbox>
-
-      <v-btn
-        :disabled="!valid"
-        color="success"
-        class="mr-4"
-        @click="validate"
-      >
-        Validate
-      </v-btn>
-
-      <v-btn
-        color="error"
-        class="mr-4"
-        @click="reset"
-      >
-        Reset Form
-      </v-btn>
-
-    </v-form>
+  </v-form>
 
 </template>
 
 <script>
     export default {
         data: () => ({
-            name: '',
-            nameRules: [
-                v => !!v || 'Name is required',
-                v => (v && v.length <= 10) || 'Name must be less than 10 characters',
-            ],
-            email: '',
-            emailRules: [
-                v => !!v || 'E-mail is required',
-                v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-            ],
+            lazy: true,
+            form: {
+                username: '',
+                password: '',
+            },
+            signUpForm: {
+                username: '',
+                password: '',
+                re_password: '',
+                email: ''
+            },
             select: null,
             checkbox: false,
         }),
 
         methods: {
-            validate() {
+            async validate() {
                 this.$refs.form.validate()
+                await this.userLogin()
+
             },
-            reset() {
-                this.$refs.form.reset()
+            async userLogin() {
+                try {
+                    let response = await this.$auth.login({data: this.form})
+                    console.log(response)
+                } catch (err) {
+                    console.log(err)
+                }
             },
+            async userRegistration() {
+                try{
+                    let response = await this.$axios.post({data: this.form})
+                    console.log(response)
+                } catch (err) {
+                    console.log(err)
+                }
+            }
         }
+
     }
 </script>
 
